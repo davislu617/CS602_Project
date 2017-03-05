@@ -1,0 +1,37 @@
+<div class="content container">
+        <br>
+        <br>
+        <br>
+        <div class="col-xs-8 col-xs-offset-2"><!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#signIn" aria-controls="signIn" role="tab" data-toggle="tab">Sign in</a></li>
+                <li role="presentation"><a href="#signUp" aria-controls="signUp" role="tab" data-toggle="tab">Sign up</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="signIn">
+                    <div class="input-group input-group-lg">
+                        <form method="post" action="/login">
+                            <input type="text" class="form-control" name="Username" placeholder="Username" aria-describedby="sizing-addon1">
+                            <input type="password" class="form-control" name="Password" placeholder="Password" aria-describedby="sizing-addon1">
+                            <input type="submit" value="Sign in" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="signUp">
+                    <div class="input-group input-group-lg">
+                        <form class="col-xs-10" method="post" action="/signup">
+                            <input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+                            <input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
+                            <input type="text" name="firstName" class="form-control" placeholder="First Name" aria-describedby="sizing-addon1">
+                            <input type="text" name="lastName" class="form-control" placeholder="Last Name" aria-describedby="sizing-addon1">
+                            <input type="email" name="email" class="form-control" placeholder="Email Address" aria-describedby="sizing-addon1">
+                            <input type="submit" value="Sign up" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+              
+    </div>
+<script src="/js/login.js"></script>

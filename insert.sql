@@ -1,0 +1,9 @@
+INSERT INTO Destination VALUES(1,'Boston','MA','U.S.',
+	'Boston is the capital and most populous city of the Commonwealth of Massachusetts in the United States. One of the oldest cities in the United States, Boston was founded on the Shawmut Peninsula in 1630 by Puritan settlers from England. It was the scene of several key events of the American Revolution, such as the Boston Massacre, the Boston Tea Party, the Battle of Bunker Hill, and the Siege of Boston. Upon U.S. independence from Great Britain, the city continued to be an important port and manufacturing hub, as well as a center for education and culture.');
+
+INSERT INTO Destination VALUES(2,'New York','NY','U.S.',
+	'New York, is the most populous city in the United States. With an estimated 2015 population of 8,550,405 distributed over a land area of about 302.6 square miles. New York City is also the most densely populated major city in the United States. Located at the southern tip of the state of New York, the city is the center of the New York metropolitan area, one of the most populous urban agglomerations in the world. A global power city, New York City exerts a significant impact upon commerce, finance, media, art, fashion, research, technology, education, and entertainment, its fast pace defining the term New York minute.');
+
+
+INSERT INTO Destination VALUES(3,'Washington','D.C.','U.S.',
+	'The signing of the Residence Act on July 16, 1790, approved the creation of a capital district located along the Potomac River on the East Coast. The U.S. Constitution provided for a federal district under the exclusive jurisdiction of the Congress and the District is therefore not a part of any state. The states of Maryland and Virginia each donated land to form the federal district, which included the pre-existing settlements of Georgetown and Alexandria. Named in honor of President George Washington, the City of Washington was founded in 1791 to serve as the new national capital.');

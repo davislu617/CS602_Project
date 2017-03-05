@@ -1,0 +1,30 @@
+<script src="/js/jquery.plugin.min.js"></script>
+<script src="/js/jquery.countdown.min.js"></script>    
+    {{#each data}}
+    <div class="content container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row"><!-- destination -->
+                <section class="col-sm-2 col-xs-offset-2">
+                    <img src="../image/{{this.city}}.jpg" alt="boston" class="img-circle">
+                </section>
+                <section class="text textDestination col-xs-4">
+                    <h2>{{this.city}}, {{this.state}}</h2>
+                    <p><span>From:&nbsp;&nbsp;</span>{{this.startDate}}</p>
+                    <p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:&nbsp;&nbsp;</span>{{this.endDate}}</p>
+                </section> 
+                <section class=" col-xs-3">
+                    <a  href="/trip/edit/{{this.trip_id}}" class="btn btn-warning">&nbsp;Edit&nbsp;</a>
+                </section>
+        </div>
+        <br>
+        <div class="text col-sm-10 col-sm-offset-1">
+            <div id={{this.trip_id}}></div>       
+        </div>
+        
+       
+    </div>
+    {{/each}}
+    {{{countdown}}}

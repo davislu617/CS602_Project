@@ -1,0 +1,94 @@
+body{
+    background-image: url('../image/background1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#content-right{
+    min-height: 700px;
+    border: 2px solid grey;
+    border-radius: 20px;
+}
+.img-circle{
+    height: 100px;
+    width: 100px;
+}
+.text{
+    color: #70410a;
+    text-align: center;
+}
+.textDestination{
+    color: #70410a;
+    min-width: 250px;
+}
+.textLarge{
+    min-height: 40px;
+    font-size: 120%;
+}
+.middle{
+    min-width: 50%;
+}
+.smallMiddle{
+    min-width: 15%;
+}
+.contentMiddle{
+    min-width: 60%;
+}
+.col-xs-1{
+    min-width: 100px;
+}
+h2{
+    margin-top: 0;
+}
+p,h3,h4,h5{
+    margin: 0;
+}
+button{
+    min-width: 55px;
+}
+#deleteDestination{
+    margin-top: 20px;
+}
+.message{
+    color: #70410a;
+    min-height: 300px;
+}
+#addFood+p{
+    font-size: 75%;
+}
+.identity{
+    display: none;
+}
+.searchList{
+    font-size: 15px;
+    line-height: 24px !important;
+    list-style: none;
+    text-align: left;
+    color: #8A877B;
+    background-color: white;
+}
+.search{
+    padding: 0;
+}
+
+.countdown-row{
+        display: block;
+        text-align: center;
+    }
+    .countdown-section{
+        display: inline-block;
+        width:85px;
+    }
+    .countdown-amount{
+        display: block;
+        font-size: 2em;
+        line-height: 30px;
+    }
+    .countdown-period{
+        display: block;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 0.5em;
+    }

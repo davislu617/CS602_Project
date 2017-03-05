@@ -1,0 +1,31 @@
+{
+  "name": "cs602_project_yiqi_lu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "client-sessions": "^0.7.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.1",
+    "mysql": "^2.13.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davislu617/CS602_Project.git"
+  },
+  "author": "Yiqi Lu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davislu617/CS602_Project/issues"
+  },
+  "homepage": "https://github.com/davislu617/CS602_Project#readme"
+}
