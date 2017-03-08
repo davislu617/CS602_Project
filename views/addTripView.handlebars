@@ -44,7 +44,7 @@
             <form class="col-xs-8 col-xs-offset-2 text" method="post" action="/Trip/add">
             <label class="col-sm-4">Destination</label>
             <div class="search col-sm-8">
-            <input id="search-hidden-mode" type="text" name="destination" class="col-sm-6 input-group input-group-lg" placeholder="Destination" data-list=".hidden_mode_list" data-nodata="No results found" autocomplete="off">
+            <input id="destination" type="text" name="destination" class="col-sm-6 input-group input-group-lg" placeholder="Destination" data-list=".hidden_mode_list" data-nodata="No results found" autocomplete="off">
             <ul class="searchList hidden_mode_list col-sm-6">
               {{#each data}}
               <li>{{this.city}}, {{this.state}}</li>
@@ -68,7 +68,8 @@
 <script src="../../js/jquery.plugin.min.js"></script>
 <script src="../../js/jquery.hideseek.min.js"></script>
 <script>
-    $('#search-hidden-mode').hideseek({
+    $('#destination').hideseek({
         hidden_mode: true
     });
 </script>
+{{{autoFill}}}

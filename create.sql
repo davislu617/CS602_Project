@@ -18,9 +18,9 @@ description VARCHAR(256) NOT NULL);
 DROP TABLE if exists Trip;
 CREATE TABLE Trip (
 trip_id INT(10) NOT NULL AUTO_INCREMENT,
-startDate DATE NULL,
-endDate DATE NULL,
-destination_id INT(10),
+startDate DATE NOT NULL,
+endDate DATE NOT NULL,
+destination_id INT(10) NOT NULL,
 CONSTRAINT PRIMARY KEY (trip_id),
 CONSTRAINT FOREIGN KEY (destination_id) REFERENCES Destination (destination_id));
 
@@ -34,10 +34,9 @@ CONSTRAINT FOREIGN KEY (username) REFERENCES User (username));
 
 DROP TABLE if exists Attraction;
 CREATE TABLE Attraction (
-attraction_id DECIMAL(10) PRIMARY KEY,
+attraction_id INT(10) PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(64) NOT NULL,
-destination_id DECIMAL(10) NOT NULL,
-location VARCHAR(64) NOT NULL,
+destination_id INT(10) NOT NULL,
 description VARCHAR(256) NOT NULL,
 CONSTRAINT FOREIGN KEY (destination_id) REFERENCES Destination (destination_id));
 
@@ -49,11 +48,10 @@ name VARCHAR(64) NOT NULL);
 
 DROP TABLE if exists Trip_Attraction;
 CREATE TABLE Trip_Attraction (
-trip_id DECIMAL(10),
-attraction_id DECIMAL(10),
-travelDate DATE NOT NULL,
-travelTime VARCHAR(10) NOT NULL,
-CONSTRAINT PRIMARY KEY (trip_id, attraction_id),
+trip_id INT(10),
+travelDate DATETIME,
+attraction_id INT(10) NOT NULL,
+CONSTRAINT PRIMARY KEY (trip_id, travelDate),
 CONSTRAINT FOREIGN KEY (trip_id) REFERENCES Trip (trip_id),
 CONSTRAINT FOREIGN KEY (attraction_id) REFERENCES Attraction (attraction_id));
 

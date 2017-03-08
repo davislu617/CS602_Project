@@ -2,15 +2,18 @@
         <div id="content-left" class="col-sm-9">
             <div class="row"><!-- destination -->
                 <section class="col-sm-2">
-                    <img src="../../image/boston.jpg" alt="boston" class="img-circle">
+                    <img src="../../image/{{destination.city}}.jpg" alt="destination" class="img-circle">
                 </section>
                 <section class="middle text col-xs-4">
-                    <h2>Boston</h2>
-                    <p><span>From:  </span>Mar 20 2017</p>
-                    <p><span>  To:   </span>Mar 23 2017</p>
+                    <h2>{{destination.city}}</h2>
+                    <p><span>From:&nbsp;&nbsp;</span>{{destination.startDate}}</p>
+                    <p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:&nbsp;&nbsp;</span>{{destination.endDate}}</p>
                 </section> 
-                <section class="col-xs-3">
-                    <button id="deleteDestination" type="button" class="btn btn-danger">Delete</button>
+                <section class="col-xs-2">
+                    <button id="editTransport" type="button" class="btn btn-warning"> Edit </button>
+                </section>
+                <section class="col-xs-2">
+                    <button id="deleteTransport" type="button" class="btn btn-danger">Delete</button>
                 </section> 
             </div>
             <hr>
@@ -35,22 +38,24 @@
                 </div>
             </div>
             <hr>
+            {{#day}}
             <div class="text row">
                 <section class="col-sm-4 col-sm-offset-3">
-                    <h3>Mar 20 2017</h3>
+                    <h3>{{this.date}}</h3>
                 </section>
             </div>
             <hr>
             <div class="row"><!-- attractions -->
                 <div class="text col-sm-2">
                     <h4>Attractions</h4>
-                    <button id="addAttractions" type="button" class="btn btn-success"> Add </button>
+                    <a href="/trip/attraction/add/{{../destination.trip_id}}/{{this.formatDate}}" class="btn btn-success"> Add </a>
                 </div>
                 <div class="col-xs-10">
+                    {{#attraction}}
                     <div class="row">
                         <section class="contentMiddle text col-xs-4">
-                            <h5>Freedom Trail</h5>
-                            <p>03/20/2017 10:45 EST</p>
+                            <h5>{{this.name}}</h5>
+                            <p>{{this.travelDate}}</p>
                         </section>
                         <section class="col-xs-2">
                             <button id="editAttractions" type="button" class="btn btn-warning"> Edit </button>
@@ -60,18 +65,7 @@
                         </section>
                     </div>
                     <br>
-                    <div class="row">
-                        <section class="contentMiddle text col-xs-4">
-                            <h5>Boston Common</h5>
-                            <p>03/20/2017 14:00 EST</p>
-                        </section>
-                        <section class="col-xs-2">
-                            <button id="editAttractions" type="button" class="btn btn-warning"> Edit </button>
-                        </section>
-                        <section class="col-xs-2">
-                            <button id="deleteAttractions" type="button" class="btn btn-danger">Delete</button>
-                        </section>
-                    </div>
+                    {{/attraction}}
                 </div>
             </div>
             <hr>
@@ -96,6 +90,7 @@
                 </div>
             </div>
             <hr>
+            {{/day}}
             <div class="row"><!-- Food&Drink -->
                 <div class="text col-sm-2">
                     <h4>Food&Drink</h4>

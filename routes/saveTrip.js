@@ -1,6 +1,6 @@
 var pool = require('./dbConnection.js')();
 module.exports = 
-	function addTrip(req , res , next){
+	function saveTrip(req , res , next){
         // normalize the inputs from the user
         var startDateArray = req.body.startDate.split('/');
         var startDate = startDateArray[2] + '-' + startDateArray[0] + '-' + startDateArray[1];
@@ -18,13 +18,13 @@ module.exports =
                     + req.body.destination + '"));';
             connection.query(query, function(err, info){
                 if(err){
-                    res.render('addTripView',{username: req.session.username,
+                    res.render('errorView',{username: req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 }else{
                     query = 'INSERT INTO Trip_User VALUES(' + info.insertId + ',"' + req.session.username + '");';
                     connection.query(query, function(err, info){
                         if(err){
-                            res.render('addTripView',{username: req.session.username,
+                            res.render('errorView',{username: req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                         }else{
                             // redirect to the displayTrip page after inserting the trip successfully
