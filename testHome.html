@@ -43,7 +43,7 @@
         <script>
   $( function() {
     var dateFormat = "mm/dd/yy",
-      from = $( "#date" )
+      from = $( "#date1" )
         .datepicker({
           defaultDate: "+1w",
           minDate:0,
@@ -99,6 +99,9 @@
 <script src="public/js/jquery.timepicker.min.js"></script>
 <script>
     $('#time').timepicker({'timeFormat': 'H:i'});
+    $( function() {
+        $( "#date" ).datepicker({ minDate: new Date(2009, 1 - 1, 26), maxDate: new Date(2009, 1 - 1, 30), dateFormat: 'yy-mm-dd'});
+    });
 </script>
 </body>
 </html>

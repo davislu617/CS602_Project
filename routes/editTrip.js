@@ -22,10 +22,10 @@ module.exports =
 		for(var i = 0; i < dayList.length; i++){
 			dayList[i].attraction = req.attraction[i];
 			for(var j = 0; j < dayList[i].attraction.length; j++){
+				dayList[i].attraction[j].travelFormatDate = dayList[i].attraction[j].travelDate.getTime();
 				dayList[i].attraction[j].travelDate = dayList[i].attraction[j].travelDate.toString().substring(0,24);
 			}
 		}
-
 
 		res.render('editTripView',{username: req.session.username,
 									day: dayList,

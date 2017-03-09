@@ -18,6 +18,9 @@ var findDestination = require("./findDestination");
 var addAttraction= require("./addAttraction");
 var saveAttraction= require("./saveAttraction");
 var findAttraction = require("./findAttraction");
+var editAttraction = require("./editAttraction");
+var saveAttractionAfterEdit = require("./saveAttractionAfterEdit");
+var deleteAttraction = require("./deleteAttraction");
 
 var pool = require('./dbConnection.js')();
 function requireLogin (req, res, next){ 
@@ -75,6 +78,9 @@ router.get("/trip/add",requireLogin, addTrip);
 router.post('/trip/add',requireLogin, saveTrip);
 router.get('/trip/attraction/add/:tripId/:date',requireLogin, requireUser, addAttraction);
 router.post('/trip/attraction/add/:tripId/:destination_id',requireLogin, requireUser, saveAttraction);
+router.get('/trip/attraction/edit/:tripId/:travelDateTime/:attractionName', requireLogin, requireUser, findDestination, editAttraction);
+router.post('/trip/attraction/edit/:tripId/',requireLogin, requireUser, saveAttractionAfterEdit);
+router.get('/trip/attraction/delete/:tripId/:travelDateTime',requireLogin, requireUser, deleteAttraction);
 router.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect('/');

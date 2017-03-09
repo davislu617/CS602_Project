@@ -58,10 +58,10 @@
                             <p>{{this.travelDate}}</p>
                         </section>
                         <section class="col-xs-2">
-                            <button id="editAttractions" type="button" class="btn btn-warning"> Edit </button>
+                            <a href='/trip/attraction/edit/{{../../destination.trip_id}}/{{this.travelFormatDate}}/{{this.name}}' type="button" class="btn btn-warning"> Edit </a>
                         </section>
                         <section class="col-xs-2">
-                            <button id="deleteAttractions" type="button" class="btn btn-danger">Delete</button>
+                            <a href='/trip/attraction/delete/{{../../destination.trip_id}}/{{this.travelFormatDate}}' type="button" class="btn btn-danger">Delete</a>
                         </section>
                     </div>
                     <br>
