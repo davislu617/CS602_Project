@@ -5,10 +5,13 @@ module.exports =
         var trip_id = req.destination.trip_id;
         var difference_ms = endDate.getTime() - startDate.getTime();
 		var travelDays = Math.round(difference_ms/(24*60*60*1000));
+
+        // create an array of travel days
         var dayList = [];
         for (var i = 0; i <= travelDays; i++){
             dayList.push(startDate.getTime() + i*24*60*60*1000)
         }
+        // find all attractions of each travel date
         var date = new Date();
         var query = '';
         for (var i = 0; i < dayList.length; i++){
@@ -20,12 +23,13 @@ module.exports =
 				        + 'ON a.attraction_id = ta.attraction_id WHERE ta.trip_id = ' +trip_id
 				        + ' AND ta.travelDate BETWEEN "'+SearchstartDate+'" AND "'+SearchEndDate+'"; ';
         }
- 
         pool.getConnection(function(err, connection){
 			connection.query(query,
               function(err, rows){
-				if(err)
-					console.log("Error Selecting : %s ", err);
+				if(err){
+                    res.render('errorView',{username: req.session.username,
+                                  error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
+                    return;}
                 req.attraction = rows;
                 next();
 			  });

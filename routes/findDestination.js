@@ -6,9 +6,10 @@ module.exports =
 				        + 'FROM Trip t JOIN Destination d ON t.destination_id = d.destination_id '
 				        + 'WHERE t.trip_id = ?'
 			connection.query(query,[req.params.tripId],function(err, rows){
-				if(err)
-					res.render('errorView',{username: req.session.username,
+				if(err){
+                    res.render('errorView',{username: req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
+                    return;}
 				req.destination = rows[0];
                 next();
 			});

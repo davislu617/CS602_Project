@@ -1,31 +1,5 @@
 <br>
 <br>
-<script>
-  $( function() {
-    var dateFormat = "mm/dd/yy",
-      from = $( "#date" )
-        .datepicker({
-          defaultDate: "+1w",
-          minDate:0,
-          changeMonth: true,
-          numberOfMonths: 1
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        })
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-</script>
     <div class="content container">
         <h2 class="col-xs-10 col-xs-offset-1 text">
             Add Transport
@@ -33,10 +7,10 @@
         <br>
         <hr>
         <div class="row textLarge">
-            <form class="col-xs-8 col-xs-offset-2 text" method="post" action="/addTransport">
+            <form class="col-xs-8 col-xs-offset-2 text" method="post" action="/trip/transport/add/{{tripId}}">
             <label class="col-sm-4">Transport</label>
             <div class="search col-sm-8">
-            <input id="transport" type="text" name="destination" class="col-sm-6 input-group input-group-lg" placeholder="Transport">
+            <input id="transport" type="text" name="transport" class="col-sm-6 input-group input-group-lg" placeholder="e.g. flight">
             </div>
             <br>
             <br>
@@ -44,10 +18,10 @@
             <input type="text" class="col-sm-4 input-group input-group-lg" id="info" name="info" placeholder="e.g. flight number">
             <br>
             <label class="col-sm-4">Date</label>
-            <input type="text" class="col-sm-4 input-group input-group-lgs" id="date" name="date" placeholder="MM/DD/YYYY">
+            <input type="text" class="col-sm-4 input-group input-group-lgs" id="date" name="date" placeholder="yyyy-mm-dd">
             <br>
             <label class="col-sm-4">Time</label>
-            <input type="text" class="col-sm-4 input-group input-group-lgs" id="time" name="time" placeholder="HH:MM">
+            <input type="text" class="col-sm-4 input-group input-group-lgs" id="time" name="time" placeholder="hh:mm">
             <br>
             <input type="submit" value="Done" class="btn btn-primary">
             </form>
@@ -55,8 +29,9 @@
     </div>
 
 
-<script src="public/js/jquery.plugin.min.js"></script>
-<script src="public/js/jquery.timepicker.min.js"></script>
+<script src="../../../js/jquery.plugin.min.js"></script>
+<script src="../../../js/jquery.timepicker.min.js"></script>
 <script>
-    $('#time').timepicker({'timeFormat': 'H:i'});
+    $('#time').timepicker({'timeFormat': 'H:i', 'scrollDefault': 'now'});
 </script>
+{{{datepicker}}}

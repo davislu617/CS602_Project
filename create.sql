@@ -40,12 +40,6 @@ destination_id INT(10) NOT NULL,
 description VARCHAR(256) NOT NULL,
 CONSTRAINT FOREIGN KEY (destination_id) REFERENCES Destination (destination_id));
 
-DROP TABLE if exists Transport;
-CREATE TABLE Transport (
-transport_id DECIMAL(10) PRIMARY KEY,
-name VARCHAR(64) NOT NULL);
-
-
 DROP TABLE if exists Trip_Attraction;
 CREATE TABLE Trip_Attraction (
 trip_id INT(10),
@@ -55,12 +49,21 @@ CONSTRAINT PRIMARY KEY (trip_id, travelDate),
 CONSTRAINT FOREIGN KEY (trip_id) REFERENCES Trip (trip_id),
 CONSTRAINT FOREIGN KEY (attraction_id) REFERENCES Attraction (attraction_id));
 
-DROP TABLE if exists Trip_Transport;
-CREATE TABLE Trip_Transport (
-trip_id DECIMAL(10),
-transport_id DECIMAL(10),
+DROP TABLE if exists Trip_Hotel;
+CREATE TABLE Trip_Hotel (
+trip_id INT(10),
 travelDate DATE NOT NULL,
-travelTime VARCHAR(10) NOT NULL,
-CONSTRAINT PRIMARY KEY (trip_id, transport_id),
-CONSTRAINT FOREIGN KEY (trip_id) REFERENCES Trip (trip_id),
-CONSTRAINT FOREIGN KEY (transport_id) REFERENCES Transport (transport_id));
+name VARCHAR(64) NOT NULL,
+address VARCHAR(128) NOT NULL,
+CONSTRAINT PRIMARY KEY (trip_id, travelDate),
+CONSTRAINT FOREIGN KEY (trip_id) REFERENCES Trip (trip_id));
+
+DELIMITER //
+CREATE TRIGGER trip_after_update
+AFTER UPDATE ON Trip FOR EACH ROW
+BEGIN
+	DELETE FROM Trip_Attraction
+    WHERE trip_id = new.trip_id AND DATE(travelDate) NOT BETWEEN new.startDate AND new.endDate;
+    DELETE FROM Trip_Hotel
+    WHERE trip_id = new.trip_id AND travelDate NOT BETWEEN new.startDate AND new.endDate;
+END;//

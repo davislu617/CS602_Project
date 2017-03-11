@@ -6,8 +6,8 @@
                 </section>
                 <section class="middle text col-xs-4">
                     <h2>{{destination.city}}</h2>
-                    <p><span>From:&nbsp;&nbsp;</span>{{destination.startDate}}</p>
-                    <p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:&nbsp;&nbsp;</span>{{destination.endDate}}</p>
+                    <p><span>From:&nbsp;&nbsp;</span>{{startDate}}</p>
+                    <p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:&nbsp;&nbsp;</span>{{endDate}}</p>
                 </section> 
                 <section class="col-xs-2">
                     <button id="editTransport" type="button" class="btn btn-warning"> Edit </button>
@@ -20,21 +20,24 @@
             <div class="row"><!-- transport -->
                 <div class="text col-sm-2">
                     <h4>Transport</h4>
-                    <button id="addTransport" type="button" class="btn btn-success"> Add </button>
+                    <a href="/trip/transport/add/{{destination.trip_id}}" type="button" class="btn btn-success"> Add </a>
                 </div>
                 <div class="col-xs-10">
+                    {{#transport}}
                     <div class="row">
                         <section class="contentMiddle text col-xs-4">
-                            <h5>Flight Delta DL3004</h5>
-                            <p>03/20/2017 07:45 EST</p>
+                            <h5>{{this.name}} {{this.info}}</h5>
+                            <p>{{this.travelDate}}</p>
                         </section>
                         <section class="col-xs-2">
-                            <button id="editTransport" type="button" class="btn btn-warning"> Edit </button>
+                            <a href="/trip/transport/edit/{{../destination.trip_id}}/{{this.id}}" type="button" class="btn btn-warning"> Edit </a>
                         </section>
                         <section class="col-xs-2">
-                            <button id="deleteTransport" type="button" class="btn btn-danger">Delete</button>
+                            <a href="/trip/transport/delete/{{../destination.trip_id}}/{{this.id}}" type="button" class="btn btn-danger">Delete</a>
                         </section>
                     </div>
+                    <br>
+                    {{/transport}}
                 </div>
             </div>
             <hr>
@@ -72,21 +75,24 @@
             <div class="row"><!-- hotel -->
                 <div class="text col-sm-2">
                     <h4>Hotel</h4>
-                    <button id="addHotel" type="button" class="btn btn-success"> Add </button>
+                    <a href="/trip/hotel/add/{{../destination.trip_id}}/{{this.formatDate}}" class="btn btn-success"> Add </a>
                 </div>
                 <div class="col-xs-10">
+                    {{#hotel}}
                     <div class="row">
                         <section class="contentMiddle text col-xs-4">
-                            <h5>Boston Marriott Copley Place</h5>
-                            <p>110 Huntington Ave, Boston, MA 02116</p>
+                            <h5>{{this.name}}</h5>
+                            <p>{{this.address}}</p>
+                            <p>{{this.travelDate}}</p>
                         </section>
                         <section class="col-xs-2">
-                            <button id="editHotel" type="button" class="btn btn-warning"> Edit </button>
+                            <a href="/trip/hotel/edit/{{../../destination.trip_id}}/{{../this.formatDate}}" type="button" class="btn btn-warning"> Edit </a>
                         </section>
                         <section class="col-xs-2">
-                            <button id="deleteHotel" type="button" class="btn btn-danger">Delete</button>
+                            <a href="/trip/hotel/delete/{{../../destination.trip_id}}/{{../this.formatDate}}" type="button" class="btn btn-danger">Delete</a>
                         </section>
                     </div>
+                    {{/hotel}}
                 </div>
             </div>
             <hr>
