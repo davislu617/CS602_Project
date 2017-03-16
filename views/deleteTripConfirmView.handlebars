@@ -1,0 +1,10 @@
+<div class="col-xs-7 col-xs-offset-2 alert alert-warning" role="alert">
+    <strong>Warning:&nbsp;&nbsp;</strong>Are you sure you want to delete this trip? It cannot be restored.
+    <br>
+    <br>
+    <form method="post" action="/trip/delete/{{tripId}}">
+        <button class="btn btn-danger">Yes. Delete it.</button>
+    </form>
+    <br>
+    <a href="/trip/edit/{{tripId}}" type="button" class="btn btn-primary">No. Go back.&nbsp;</a>
+</div>

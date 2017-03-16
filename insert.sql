@@ -55,8 +55,31 @@ INSERT INTO Attraction (name, destination_id, description)
 VALUES ('Jefferson Memorial', 3, 'The Jefferson Memorial is a presidential memorial in Washington, D.C., dedicated to Thomas Jefferson (1743–1826), one of the most important of the American Founding Fathers as the main drafter and writer of the Declaration of Independence, member of the Continental Congress,and also the third President (1801–1809), as well as being the founder of the University of Virginia at Charlottesville, Virginia.');
 
 INSERT INTO Attraction (name, destination_id, description)
-VALUES ();
+VALUES ('National Zoological Park', 3, 'The National Zoological Park, commonly known as the National Zoo, is one of the oldest zoos in the United States. The Giant Panda Habitat features three outdoor areas with animal enrichment, as well as an indoor area with a rocky outcrop, a waterfall, and visitor viewing areas. The pandas, named Mei Xiang and Tian Tian, are on loan from the China Wildlife Conservation Association, and will live at the zoo until 2020.');
 
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('Central Park', 2, 'Central Park is an urban park in Manhattan, New York City. Central Park is the most visited urban park in the United States, with 40 million visitors in 2013, and one of the most filmed locations in the world.');
+
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('Empire State Building', 2, 'The Empire State Building is a 102-story skyscraper located on Fifth Avenue between West 33rd and 34th Streets in Midtown, Manhattan, New York City. It has a roof height of 1,250 feet, and with its antenna included, it stands a total of 1,454 feet tall. Its name is derived from the nickname for New York, the Empire State.');
+
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('Statue of Liberty', 2, 'The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. The copper statue, a gift from the people of France to the people of the United States, was designed by French sculptor Frédéric Auguste Bartholdi and built by Gustave Eiffel. The statue was dedicated on October 28, 1886.');
+
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('Metropolitan Museum of Art', 2, 'The Metropolitan Museum of Art, colloquially "the Met", is located in New York City and is the largest art museum in the United States, and is among the most visited art museums in the world. Its permanent collection contains over two million works, divided among seventeen curatorial departments.');
+
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('Rockefeller Center', 2, 'Rockefeller Center is a large complex consisting of 19 high-rise commercial buildings covering 22 acres between 48th and 51st Streets in New York City. Commissioned by the Rockefeller family, it is located in the center of Midtown Manhattan, spanning the area between Fifth Avenue and Sixth Avenue. It was declared a National Historic Landmark in 1987.');
+
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('One World Trade Center', 2, 'One World Trade Center is the main building of the rebuilt World Trade Center complex in Lower Manhattan, New York City. It is the tallest building in the Western Hemisphere, and the sixth-tallest in the world. The supertall structure has the same name as the North Tower of the original World Trade Center, which was completely destroyed in the terrorist attacks of September 11, 2001.');
+
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('American Museum of Natural History', 2, 'The American Museum of Natural History (abbreviated as AMNH), located on the Upper West Side of Manhattan, New York City, is one of the largest museums in the world. Located in park-like grounds across the street from Central Park, the museum complex comprises 28 interconnected buildings housing 45 permanent exhibition halls, in addition to a planetarium and a library.');
+
+INSERT INTO Attraction (name, destination_id, description)
+VALUES ('Brooklyn Bridge', 2, 'The Brooklyn Bridge is a hybrid cable-stayed/suspension bridge in New York City and is one of the oldest bridges of either type in the United States. Completed in 1883, it connects the boroughs of Manhattan and Brooklyn by spanning the East River. It has a main span of 1,595.5 feet and was the first steel-wire suspension bridge constructed.');
 
 
 

@@ -5,7 +5,6 @@ var _ = require('underscore');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 
-
 // other modules
 var login = require("./login");
 var signup = require("./signup");
@@ -15,6 +14,9 @@ var auth = require("./auth");
 var editTrip = require("./editTrip");
 var addTrip = require("./addTrip");
 var saveTrip = require("./saveTrip");
+var editTripDate = require("./editTripDate");
+var saveTripDate = require("./saveTripDate");
+var deleteTrip = require("./deleteTrip");
 
 var findDestination = require("./findDestination");
 var findAttraction = require("./findAttraction");
@@ -31,6 +33,7 @@ var addTransport = require("./addTransport");
 var saveTransport = require("./saveTransport");
 var editTransport = require("./editTransport");
 var saveTransportAfterEdit = require("./saveTransportAfterEdit");
+var deleteTripConfirm = require("./deleteTripConfirm");
 var deleteTransport = require("./deleteTransport");
 
 var addHotel = require("./addHotel");
@@ -38,6 +41,9 @@ var saveHotel = require("./saveHotel");
 var editHotel = require("./editHotel");
 var saveHotelAfterEdit = require("./saveHotelAfterEdit");
 var deleteHotel = require("./deleteHotel");
+
+var adduser = require("./adduser");
+var leaveTrip = require("./leaveTrip");
 
 var pool = require('./dbConnection.js')();
 function requireLogin (req, res, next){ 
@@ -69,13 +75,14 @@ function requireUser (req, res, next){
       console.log(err);
       return;
     }
-    var query = 'SELECT trip_id, username FROM Trip_User WHERE trip_id = '
-                + req.params.tripId + ' AND username= "' + req.session.username + '";';
+    var query = 'SELECT * FROM Trip_User WHERE trip_id = '+ req.params.tripId + ' ORDER BY role DESC';
     connection.query(query, function(err, rows){
-      if(!rows[0]){
+      if(err || !_.findWhere(rows, {"username":req.session.username})){
         console.log(err);
         res.redirect('/trip/display');
       }else{
+        req.user = _.findWhere(rows, {"username":req.session.username});
+        req.userlist = rows;
         next();
       }
     });
@@ -87,13 +94,19 @@ function requireUser (req, res, next){
 router.get('/', function(req, res, next) {
   res.redirect('/trip/display');
 });
+
 router.get('/login', login);
 router.post('/login', auth);
 router.post('/signup',signup);
+
 router.get("/trip/display", requireLogin, displayTrip);
 router.get("/trip/edit/:tripId", requireLogin, requireUser, findDestination, findTransport, findAttraction, findHotel, editTrip);
 router.get("/trip/add",requireLogin, addTrip);
 router.post('/trip/add',requireLogin, saveTrip);
+router.get('/trip/editdate/:tripId', requireLogin, requireUser, findDestination,editTripDate);
+router.post('/trip/editdate/:tripId', requireLogin, requireUser,saveTripDate);
+router.get('/trip/delete/:tripId', requireLogin, requireUser, deleteTripConfirm);
+router.post('/trip/delete/:tripId', requireLogin, requireUser, deleteTrip);
 
 router.get('/trip/attraction/add/:tripId/:date',requireLogin, requireUser, addAttraction);
 router.post('/trip/attraction/add/:tripId/:destination_id',requireLogin, requireUser, saveAttraction);
@@ -112,6 +125,9 @@ router.post('/trip/hotel/add/:tripId/',requireLogin, requireUser, saveHotel);
 router.get('/trip/hotel/edit/:tripId/:date',requireLogin, requireUser, findDestination, editHotel);
 router.post('/trip/hotel/edit/:tripId/:date',requireLogin, requireUser, saveHotelAfterEdit);
 router.get('/trip/hotel/delete/:tripId/:date', requireLogin, requireUser, deleteHotel);
+
+router.post('/trip/adduser/:tripId', requireLogin, requireUser, adduser);
+router.get('/trip/leaveTrip/:tripId', requireLogin, requireUser, leaveTrip);
 
 router.get('/logout', function(req, res) {
   req.session.reset();

@@ -20,10 +20,11 @@ module.exports =
                     res.render('errorView',{username: req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 }else{
-                    // redirect to the displayTrip page after inserting the trip successfully
+                    // redirect to the editTrip page after inserting the attraction successfully
                     res.redirect('/trip/edit/'+trip_id);
                 }
             });
             connection.release();
+            console.log('close');
         });
     }

@@ -10,17 +10,17 @@
                     <p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:&nbsp;&nbsp;</span>{{endDate}}</p>
                 </section> 
                 <section class="col-xs-2">
-                    <button id="editTransport" type="button" class="btn btn-warning"> Edit </button>
+                    <a href="/trip/editdate/{{destination.trip_id}}" type="button" class="btn btn-warning"> Edit </a>
                 </section>
                 <section class="col-xs-2">
-                    <button id="deleteTransport" type="button" class="btn btn-danger">Delete</button>
+                    {{{delete}}}
                 </section> 
             </div>
             <hr>
             <div class="row"><!-- transport -->
                 <div class="text col-sm-2">
                     <h4>Transport</h4>
-                    <a href="/trip/transport/add/{{destination.trip_id}}" type="button" class="btn btn-success"> Add </a>
+                    <a href="/trip/transport/add/{{destination.trip_id}}" type="button" class="addButton btn btn-success"> Add </a>
                 </div>
                 <div class="col-xs-10">
                     {{#transport}}
@@ -51,7 +51,7 @@
             <div class="row"><!-- attractions -->
                 <div class="text col-sm-2">
                     <h4>Attractions</h4>
-                    <a href="/trip/attraction/add/{{../destination.trip_id}}/{{this.formatDate}}" class="btn btn-success"> Add </a>
+                    <a href="/trip/attraction/add/{{../destination.trip_id}}/{{this.formatDate}}" class="addButton btn btn-success"> Add </a>
                 </div>
                 <div class="col-xs-10">
                     {{#attraction}}
@@ -75,7 +75,7 @@
             <div class="row"><!-- hotel -->
                 <div class="text col-sm-2">
                     <h4>Hotel</h4>
-                    <a href="/trip/hotel/add/{{../destination.trip_id}}/{{this.formatDate}}" class="btn btn-success"> Add </a>
+                    <a href="/trip/hotel/add/{{../destination.trip_id}}/{{this.formatDate}}" class="addButton btn btn-success"> Add </a>
                 </div>
                 <div class="col-xs-10">
                     {{#hotel}}
@@ -100,7 +100,7 @@
             <div class="row"><!-- Food&Drink -->
                 <div class="text col-sm-2">
                     <h4>Food&Drink</h4>
-                    <button id="addFood" type="button" class="btn btn-success"> Add </button>
+                    <button id="addFood" type="button" class="addButton btn btn-success"> Add </button>
                     <p>Powered by Yelp</p>
                 </div>
                 <div class="col-xs-10">
@@ -123,34 +123,47 @@
         </div>
 
         <div id="content-right" class="col-sm-3">
-            <h4 class="text">Travel Mate</h4>
-            <br>
-            <h5 class="text">User1</h5>
-            <h5 class="text">User2</h5>
-            <br>
+            <p class="identity" id="trip_id">{{{trip_id}}}</p>
             <div class="row">
-                <section class="col-xs-4 col-xs-offset-2">
-                    <button id="addUser" type="button" class="btn btn-success">Add</button>
-                </section>
-                <section class="col-xs-3">
-                    <button id="editUser" type="button" class="btn btn-warning">Edit</button>
-                </section>
+                <h3>&nbsp;&nbsp;<span class="label label-primary">Participants</span></h3>
+                <br>       
+                <h4 class="userlist">{{#userlist}}<span class="userlistspan label label-info">{{this.username}}</span>&nbsp;<span class="label label-default">{{this.role}}</span> {{/userlist}}</h4>      
             </div>
-            <hr>
+            <br>
+            {{{participants}}}
             <hr>
             <h4 class="text">Messages</h4>
-            <br>
             <div class="message">
-                <p>User1: Hello!</p>
-                <p>User2: Let's plan it!</p>
+                <ul class="message" id="messages"></ul>
             </div>
-            <div >
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="message">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+            <div class="row">
+                <span class="label label-primary">Chat with your companions</span>
+                <div class="input-group">
+                    <textarea id="m" type="text" class="form-control" rows="2" placeholder="message"></textarea>
+                    <button id="chatSubmit" class="btn btn-primary" type="button">Submit</button>
+                </div>
             </div>
         </div>
     </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  var room = $('#trip_id').text();
+  $(function () {
+    var socket = io();
+    socket.on('connect', function() {
+        socket.emit('room', room);
+    });
+    $('#chatSubmit').on('click',function(){
+      socket.emit('chat message', {'username':$('#username').text(),
+                                    'trip_id':$('#trip_id').text(),
+                                    'message':$('#m').val()});
+      $('#m').val('');
+      return false;
+    });
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(msg));
+    });
+  });
+</script>

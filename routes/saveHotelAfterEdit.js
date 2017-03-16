@@ -14,7 +14,7 @@ module.exports =
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 return;
             }
-            // update the attraction in the database
+            // update the hotel in the database
             var query = 'UPDATE Trip_Hotel '
                         + 'SET name = ? , address = ? , travelDate = ?'
                         + 'WHERE trip_id = ? AND travelDate = ?';

@@ -15,7 +15,7 @@ module.exports =
             // insert the normalized inputs into the database
             var query = 'INSERT INTO Trip VALUES(NULL,"' + startDate + '","' + endDate 
                     + '", (SELECT destination_id from Destination d WHERE d.city="'
-                    + req.body.destination + '"));';
+                    + req.body.destination + '"), "owner");';
             connection.query(query, function(err, info){
                 if(err){
                     res.render('errorView',{username: req.session.username,

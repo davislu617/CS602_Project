@@ -5,7 +5,25 @@ var session = require('client-sessions');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
+// create a chat connection to allow all users in the same trip to chat online
+io.on('connection', function(socket){
+    // join the chat room with the user's trip_id
+    socket.on('room', function(room) {
+        socket.join(room);
+    });
+    socket.on('chat message', function(msg){
+      // broadcast message to the specified chat room
+      io.in(msg.trip_id).emit('chat message', msg.username+': '+msg.message);
+    });
+});
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+});
+      
 // setup handlebars view engine
 app.engine('handlebars', 
     handlebars({defaultLayout: 'main'}));
@@ -35,7 +53,3 @@ app.use('/', routes);
 
 
 
-
-app.listen(3000, function(){
-  console.log('http://localhost:3000');
-});

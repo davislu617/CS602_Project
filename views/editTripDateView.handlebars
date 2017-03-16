@@ -2,7 +2,7 @@
 <br>
     <div class="content container">
         <h2 class="col-xs-10 col-xs-offset-1 text">
-            Edit the trip travel dates
+            Edit the travel dates of your Trip
         </h2>
         <br>
         <hr>
@@ -24,15 +24,21 @@
             </form>
         </div>           
     </div>
+    <input id="startDate" class="identity" value="{{startDate}}">
+    <input id="endDate" class="identity" value="{{endDate}}">
 
 
-
-<script src="../../../../js/jquery.plugin.min.js"></script>
+<script src="../../../js/jquery.plugin.min.js"></script>
 
 <script>
     $( function() {
+        var startDate = new Date();
+        startDate.setTime($('#startDate').val());
+        var endDate = new Date();
+        endDate.setTime($('#endDate').val());
         var dateFormat = "yy-mm-dd",
             from = $( "#from" ).datepicker({
+                    defaultDate: startDate,
                     dateFormat:"yy-mm-dd",
                     changeMonth: true,
                     numberOfMonths: 1
@@ -41,6 +47,7 @@
                     to.datepicker( "option", "minDate", getDate( this ) );
                 }),
             to = $( "#to" ).datepicker({
+                    defaultDate: endDate,
                     dateFormat:"yy-mm-dd",
                     changeMonth: true,
                     numberOfMonths: 1

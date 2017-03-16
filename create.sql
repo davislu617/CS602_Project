@@ -58,6 +58,7 @@ address VARCHAR(128) NOT NULL,
 CONSTRAINT PRIMARY KEY (trip_id, travelDate),
 CONSTRAINT FOREIGN KEY (trip_id) REFERENCES Trip (trip_id));
 
+DROP TRIGGER IF EXISTS trip_after_update;
 DELIMITER //
 CREATE TRIGGER trip_after_update
 AFTER UPDATE ON Trip FOR EACH ROW
@@ -67,3 +68,4 @@ BEGIN
     DELETE FROM Trip_Hotel
     WHERE trip_id = new.trip_id AND travelDate NOT BETWEEN new.startDate AND new.endDate;
 END;//
+

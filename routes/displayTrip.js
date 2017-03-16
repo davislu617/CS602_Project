@@ -19,7 +19,8 @@ module.exports =
                 }else{
 					if(!rows[0]){
 						res.render('displayTripView',{username:req.session.username, 
-												  message: "You don't plan any trip :(<br><br>Add a trip plan now!"});
+												  message: "You don't have any trip plan :(<br><br>Let's have a <span class='tripit'>TRIP </span>!"
+												  			+"<br><br><a href='/trip/add'>Add a trip</a>"});
 					}else{
 						// create an inline <script> to invoke the countdown function for each trip
 						var result = JSON.parse(JSON.stringify(rows));
