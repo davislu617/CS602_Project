@@ -1,0 +1,106 @@
+<div id="tripId" class="identity">{{tripId}}</div>
+<br>
+<br>
+<br>
+<div class="col-sm-offset-1 col-sm-10">
+<ol class="breadcrumb">
+  <li id="city" class="active">{{city}}</li>
+  <li><a id="attractionBtn" class="selected">Attraction List</a></li>
+  <li><a id="foodBtn">Explore more...</a></li>
+</ol>
+</div>
+<div class="col-sm-offset-1 col-sm-10">
+<div id="attraction" class="row">
+{{#attraction}}
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="../image/{{this.name}}.jpg" alt={{this.name}}>
+      <div class="caption">
+        <h5>{{this.name}}</h5>
+        <button id={{this.formatname}} type="button" class="btn btn-primary" data-toggle="popover" title="{{this.name}}" data-content="{{this.description}}">
+            Read More
+        </button>
+      </div>
+    </div>
+  </div>
+  {{/attraction}}
+</div>
+
+<div id="food" class="row">
+    <div class="col-sm-6">
+    <div class="input-group">
+      <input id="term" type="text" class="form-control searchForm" placeholder="Search for...">
+      <input id="location" type="text" class="form-control searchForm" placeholder="Location">
+      <span class="input-group-btn">
+        <button id="search"class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+    <br>
+    <br>
+    <div id="progressBar">
+    </div>
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+    <br>
+    <br>
+    <div id="result">
+    </div>
+
+</div>
+
+</div>
+{{{js}}}
+
+<script>
+  // control the different panels
+  $('#attractionBtn').on('click',function(){
+    $('#attraction').fadeIn();
+    $('#attractionBtn').addClass('selected');
+    $('#food').fadeOut();
+    $('#foodBtn').removeClass('selected');
+  });
+  $('#foodBtn').on('click',function(){
+    $('#food').fadeIn();
+    $('#foodBtn').addClass('selected');
+    $('#attraction').fadeOut();
+    $('#attractionBtn').removeClass('selected');
+  });
+
+  // search button, using Ajax and POST method
+  $("#search").click(function(){
+    $('#result').html('');
+    $('#progressBar').html('<div class="progress">'
+                    + '<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">'
+                    + 'Searching for '+$('#term').val()+' in '+$('#location').val()+'</div></div>')
+    if(!$('#term').val()) $('#term').val('Food');
+    if(!$('#location').val()) $('#location').val($('#city').text());
+    $.post("/lookAround/"+$('#city').text(),
+    {
+        term: $('#term').val(),
+        location: $('#location').val()
+    },
+    function(data, status){
+      if(status == "success"){
+        // display results after retrieving information from Yelp API successfully
+        setTimeout(function(){
+          $('#progressBar').html('');
+          for(var i = 0; i < data.businesses.length; i++){
+            $('#result').append('<div class="media">'
+                              + '<div class="media-left">'
+                              + '<img class="media-object" src="'+data.businesses[i].image_url+'" alt="'+data.businesses[i].id+'">'
+                              + '</div>'
+                              + '<div class="media-body textColor">'
+                              + '<h4 id="name'+i+'"class="media-heading">'+data.businesses[i].name+'&nbsp;&nbsp;&nbsp;&nbsp;'+'</h4>'
+                              + '<p id="category'+i+'">'+data.businesses[i].categories[0][0]+'</p>'
+                              + '<p id="address'+i+'">'+data.businesses[i].location.address[0]+', '+data.businesses[i].location.city+'</p>'
+                              + '<p id="phone'+i+'">'+data.businesses[i].display_phone+'</p>'
+                              + '<p>'+data.businesses[i].snippet_text+'</p>'
+                              +' </div></div><hr>');
+          }
+        },2000);
+      }
+    });
+});
+
+
+</script>

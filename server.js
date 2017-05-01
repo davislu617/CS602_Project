@@ -8,6 +8,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+
+
 // create a chat connection to allow all users in the same trip to chat online
 io.on('connection', function(socket){
     // join the chat room with the user's trip_id
@@ -50,6 +52,8 @@ app.use(session({
 // Routing
 var routes = require('./routes/index');
 app.use('/', routes);
+
+
 
 
 

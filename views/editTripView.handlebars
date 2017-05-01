@@ -9,10 +9,13 @@
                     <p><span>From:&nbsp;&nbsp;</span>{{startDate}}</p>
                     <p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:&nbsp;&nbsp;</span>{{endDate}}</p>
                 </section> 
-                <section class="col-xs-2">
+                <section class="col-xs-1">
                     <a href="/trip/editdate/{{destination.trip_id}}" type="button" class="btn btn-warning"> Edit </a>
                 </section>
                 <section class="col-xs-2">
+                    <a href="../../lookAround/{{destination.city}}?tripId={{destination.trip_id}}"><button class="btn btn-primary">Explore</button></a>
+                </section>
+                <section class="col-xs-4">
                     {{{delete}}}
                 </section> 
             </div>
@@ -52,6 +55,7 @@
                 <div class="text col-sm-2">
                     <h4>Attractions</h4>
                     <a href="/trip/attraction/add/{{../destination.trip_id}}/{{this.formatDate}}" class="addButton btn btn-success"> Add </a>
+                    
                 </div>
                 <div class="col-xs-10">
                     {{#attraction}}
@@ -97,7 +101,8 @@
             </div>
             <hr>
             {{/day}}
-            <div class="row"><!-- Food&Drink -->
+            <!--
+            <div class="row">
                 <div class="text col-sm-2">
                     <h4>Food&Drink</h4>
                     <button id="addFood" type="button" class="addButton btn btn-success"> Add </button>
@@ -118,7 +123,7 @@
                     </div>
                 </div>
             </div>
-
+            -->
 
         </div>
 
@@ -156,7 +161,7 @@
         socket.emit('room', room);
     });
     $('#chatSubmit').on('click',function(){
-      socket.emit('chat message', {'username':$('#username').text(),
+      socket.emit('chat message', {'username':$('#username').text().substring(8),
                                     'trip_id':$('#trip_id').text(),
                                     'message':$('#m').val()});
       $('#m').val('');

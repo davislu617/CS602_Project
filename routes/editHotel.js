@@ -16,6 +16,7 @@ module.exports =
                     res.render('errorView',{username: req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
             }
+            // retrieve the travel dates of this plan -- users can only set the hotel within these travel dates
             var query = 'SELECT * FROM Trip_Hotel '
                     + 'WHERE trip_id = ? AND travelDate = "'+date+'"'; 
             connection.query(query,[trip_id], function(err, rows){
@@ -23,7 +24,7 @@ module.exports =
                     res.render('errorView',{username: req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 }
-                res.render('editHotelView',{username: req.session.username,
+                res.render('editHotelView',{username: 'Welcome ' + req.session.username,
                                                 city:req.destination.city,
                                                 tripId: trip_id,
                                                 name: rows[0].name,

@@ -24,7 +24,7 @@ module.exports =
                         +req.destination.endDate.getFullYear()+','+req.destination.endDate.getMonth()+','+req.destination.endDate.getDate()
                         +"), dateFormat: 'yy-mm-dd'});});"
                         +'</script>';
-            res.render('editTransportView',{username: req.session.username,
+            res.render('editTransportView',{username: 'Welcome ' + req.session.username,
                                                 transport: transport,
                                                 tripId: trip_id,
                                                 date: travelDate,

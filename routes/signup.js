@@ -15,6 +15,7 @@ module.exports =
             console.log(err);
             return;
         }
+        // insert new user into database
         connection.query("INSERT INTO User VALUES ('" + req.body.username
     +"','"+req.body.password+"','"+req.body.firstName+"','"+req.body.lastName+"','"+req.body.email+"');",
         function(err, rows){

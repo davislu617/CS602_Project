@@ -15,9 +15,16 @@ body{
     height: 100px;
     width: 100px;
 }
+.img-lookaround{
+    height: 200px;
+    width: 200px;
+}
 .text{
     color: #70410a;
     text-align: center;
+}
+.textColor{
+    color: #70410a;
 }
 .userlist{
     max-width: 25%;
@@ -83,6 +90,9 @@ button{
 .search{
     padding: 0;
 }
+.searchForm{
+    width:50% !important;
+}
 #ui-id-1{
     opacity: 0;
 }
@@ -91,6 +101,9 @@ button{
 }
 .addButton{
     margin-bottom: 5px;
+}
+.selected{
+    color: darkgoldenrod !important;
 }
 .countdown-row{
         display: block;

@@ -24,7 +24,7 @@ pool.getConnection(function(err, connection){
 module.exports = 
 	function displayTrip(req , res , next){
         
-	  	res.render('addTripView',{username: req.session.username,
+	  	res.render('addTripView',{username: 'Welcome ' + req.session.username,
                                   data:destination,
                                   autoFill: autoFillScript})
     }

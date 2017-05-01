@@ -27,7 +27,7 @@ module.exports =
 			connection.query(query,
               function(err, rows){
 				if(err){
-                    res.render('errorView',{username: req.session.username,
+                    res.render('errorView',{username: 'Welcome ' + req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                     return;}
                 req.attraction = rows;

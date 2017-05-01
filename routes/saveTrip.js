@@ -15,16 +15,16 @@ module.exports =
             // insert the normalized inputs into the database
             var query = 'INSERT INTO Trip VALUES(NULL,"' + startDate + '","' + endDate 
                     + '", (SELECT destination_id from Destination d WHERE d.city="'
-                    + req.body.destination + '"), "owner");';
+                    + req.body.destination + '"));';
             connection.query(query, function(err, info){
                 if(err){
-                    res.render('errorView',{username: req.session.username,
+                    res.render('errorView',{username: 'Welcome ' + req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 }else{
-                    query = 'INSERT INTO Trip_User VALUES(' + info.insertId + ',"' + req.session.username + '");';
+                    query = 'INSERT INTO Trip_User VALUES(' + info.insertId + ',"' + req.session.username + '","owner");';
                     connection.query(query, function(err, info){
                         if(err){
-                            res.render('errorView',{username: req.session.username,
+                            res.render('errorView',{username: 'Welcome ' + req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                         }else{
                             // redirect to the displayTrip page after inserting the trip successfully

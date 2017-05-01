@@ -5,7 +5,7 @@ module.exports =
 		var deleteButton = '';
 		var participants = '';
 		if (req.user.role == 'owner'){
-			deleteButton = '<a href="/trip/delete/'+trip_id+'" class="deleteButton">Delete</a>';
+			deleteButton = '<a href="/trip/delete/'+trip_id+'" class="deleteButton">&nbsp;Delete</a>';
 			participants = '<div class="row"><span class="label label-primary">Add a companion</span>'+'<form method="post" action="/trip/adduser/'+trip_id+'">'
 					+'<div class="input-group">'
 					+'<input type="text" class="form-control" name="username" placeholder="username"><span class="input-group-btn">'
@@ -43,7 +43,6 @@ module.exports =
 		}while (i <= travelDays);
 
 		//change the format of travelDate of each attraction
-		var dateLoop = new Date();
 		for(var i = 0; i < dayList.length; i++){
 			dayList[i].attraction = req.attraction[i];
 			dayList[i].hotel = req.hotel.filter(function(hotel){
@@ -62,7 +61,8 @@ module.exports =
 			}
 		}
 
-		res.render('editTripView',{username: req.session.username,
+
+		res.render('editTripView',{username: 'Welcome ' + req.session.username,
 								   delete : deleteButton,
 								   participants:participants,
 								   day: dayList,

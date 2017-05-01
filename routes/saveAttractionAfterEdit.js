@@ -17,7 +17,7 @@ module.exports =
                         + '(SELECT a.attraction_id FROM Attraction a WHERE a.name = ?)';
             connection.query(query,[dateTime, trip_id, attractionName], function(err, rows){
                 if(err){
-                    res.render('errorView',{username: req.session.username,
+                    res.render('errorView',{username: 'Welcome ' + req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 }else{
                     // redirect to the displayTrip page after inserting the trip successfully

@@ -13,7 +13,7 @@ module.exports =
                         +req.destination.endDate.getFullYear()+','+req.destination.endDate.getMonth()+','+req.destination.endDate.getDate()
                         +"), dateFormat: 'yy-mm-dd'});});"
                         +'</script>';
-        res.render('editAttractionView',{username: req.session.username,
+        res.render('editAttractionView',{username: 'Welcome ' + req.session.username,
                                                 name: attractionName,
                                                 tripId: trip_id,
                                                 date: travelDate,

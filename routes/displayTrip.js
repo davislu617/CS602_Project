@@ -14,7 +14,7 @@ module.exports =
 			// retrieve trip information from the database
 			connection.query(query, function(err, rows){
 				if(err){
-                    res.render('displayTripView',{username: req.session.username,
+                    res.render('displayTripView',{username: 'Welcome ' + req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 }else{
 					if(!rows[0]){
@@ -34,7 +34,7 @@ module.exports =
 						}
 						countdown += "</script>";
 
-						res.render('displayTripView',{username:req.session.username, 
+						res.render('displayTripView',{username:'Welcome ' + req.session.username, 
 												  	data: result,
 												  	countdown: countdown});
 					}

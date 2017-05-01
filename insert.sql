@@ -16,7 +16,7 @@ INSERT INTO Attraction (name, destination_id, description)
 VALUES ('Boston Common', 1, 'Boston Common (also known as the Common) is a central public park in downtown Boston, Massachusetts. It is sometimes erroneously referred to as the "Boston Commons".[4][5] Dating from 1634, it is the oldest city park in the United States.');
 
 INSERT INTO Attraction (name, destination_id, description)
-VALUES ('Havard University', 1, 'Harvard University is a private Ivy League research university in Cambridge, Massachusetts, established in 1636, whose history, influence, and wealth have made it one of the worlds most prestigious universities.');
+VALUES ('Harvard University', 1, 'Harvard University is a private Ivy League research university in Cambridge, Massachusetts, established in 1636, whose history, influence, and wealth have made it one of the worlds most prestigious universities.');
 
 INSERT INTO Attraction (name, destination_id, description)
 VALUES ('Museum of Fine Arts', 1, 'The Museum of Fine Arts in Boston is the fourth largest museum in the United States. It contains more than 450,000 works of art, making it one of the most comprehensive collections in the Americas. With more than one million visitors a year, it is the 55th most-visited art museum in the world as of 2014');

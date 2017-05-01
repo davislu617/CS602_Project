@@ -1,16 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var clientSession = require('client-sessions');
-var _ = require('underscore');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 
 // other modules
-var login = require("./login");
-var signup = require("./signup");
-var displayTrip = require("./displayTrip");
-var auth = require("./auth");
+var login = require("./login"); //sign in
+var signup = require("./signup"); // sign up
+var auth = require("./auth"); //validate username and password
 
+var requireLogin = require('./requireLogin.js'); // check if the user has logged in
+var requireUser = require('./requireUser.js'); // check if the user participates in this trip
+
+var displayTrip = require("./displayTrip");
 var editTrip = require("./editTrip");
 var addTrip = require("./addTrip");
 var saveTrip = require("./saveTrip");
@@ -45,50 +47,11 @@ var deleteHotel = require("./deleteHotel");
 var adduser = require("./adduser");
 var leaveTrip = require("./leaveTrip");
 
-var pool = require('./dbConnection.js')();
-function requireLogin (req, res, next){ 
-  if (!req.session.username) {
-    res.redirect('/login');
-  } else {
-    pool.getConnection(function(err, connection){
-        if (err){
-            console.log(err);
-            return;
-        }
-      var query = 'SELECT username, password FROM User WHERE username="'
-                + req.session.username + '";';
-      connection.query(query, function(err,rows){
-        if(!JSON.parse(JSON.stringify(rows))[0]){
-          res.redirect('/login');
-          req.session.reset();
-        }else{
-          next();
-        }
-      });
-      connection.release();
-    });
-  }
-};
-function requireUser (req, res, next){
-  pool.getConnection(function(err, connection){
-    if (err){
-      console.log(err);
-      return;
-    }
-    var query = 'SELECT * FROM Trip_User WHERE trip_id = '+ req.params.tripId + ' ORDER BY role DESC';
-    connection.query(query, function(err, rows){
-      if(err || !_.findWhere(rows, {"username":req.session.username})){
-        console.log(err);
-        res.redirect('/trip/display');
-      }else{
-        req.user = _.findWhere(rows, {"username":req.session.username});
-        req.userlist = rows;
-        next();
-      }
-    });
-    connection.release();
-  });
-};
+var lookAround = require("./lookAround");
+var viewCity = require("./viewCity");
+var searchByYelp = require("./searchByYelp");
+
+var downloadTrip = require("./downloadTrip");
 
 // router specs
 router.get('/', function(req, res, next) {
@@ -128,6 +91,13 @@ router.get('/trip/hotel/delete/:tripId/:date', requireLogin, requireUser, delete
 
 router.post('/trip/adduser/:tripId', requireLogin, requireUser, adduser);
 router.get('/trip/leaveTrip/:tripId', requireLogin, requireUser, leaveTrip);
+
+router.get('/lookAround', requireLogin, lookAround);
+router.get('/lookAround/:city', requireLogin, viewCity);
+router.get('/lookAround/:city/:tripId', requireLogin, viewCity);
+router.post('/lookAround/:city', requireLogin, searchByYelp);
+
+router.get('/downloadTrip/:username', downloadTrip);
 
 router.get('/logout', function(req, res) {
   req.session.reset();

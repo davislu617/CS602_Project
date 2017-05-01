@@ -13,7 +13,7 @@ module.exports =
                     res.render('errorView',{username: req.session.username,
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                     return;}
-
+            // delete the transport from MongoDb
             transport.remove(function (err){
                 if(err){
                     res.render('errorView',{username: req.session.username,

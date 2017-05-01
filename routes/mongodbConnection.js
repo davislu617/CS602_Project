@@ -23,6 +23,13 @@ var hotelSchema = new Schema({
     travelDate: Date
 });
 
+var otherSchema = new Schema({
+    name: String,
+    category: String,
+    address: String,
+    phone: String
+})
+
 module.exports = {
     getTransportModel: function getTransportModel(){
         if (connection == null){
@@ -36,6 +43,14 @@ module.exports = {
         if (connection == null){
             connection = mongoose.createConnection(dbUrl);
             model = connection.model('HotelModel', hotelSchema);
+        }
+        return model;
+    },
+
+    getOtherModel: function getOtherModel(){
+        if (connection == null){
+            connection = mongoose.createConnection(dbUrl);
+            model = connection.model('OtherModel', otherSchema);
         }
         return model;
     }

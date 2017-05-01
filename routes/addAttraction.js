@@ -29,7 +29,7 @@ module.exports =
                 }
                 autoFillScript = autoFillScript.substring(0,autoFillScript.length-1);
                 autoFillScript += ']; $( "#attraction" ).autocomplete({source: attractionList});});</script>';
-                res.render('addAttractionView',{username: req.session.username,
+                res.render('addAttractionView',{username: 'Welcome ' + req.session.username,
                                                 data:attraction,
                                                 city:attraction[0],
                                                 tripId: trip_id,

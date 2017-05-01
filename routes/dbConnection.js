@@ -6,6 +6,7 @@ module.exports  = function (){
 		"host": credentials.host, 
 		"port": 3307,
 		"user": credentials.username,
+		"password": credentials.password,
 		"database": credentials.database,
 		multipleStatements: true
 	});

@@ -28,6 +28,7 @@ DROP TABLE if exists Trip_User;
 CREATE TABLE Trip_User (
 trip_id INT(10),
 username VARCHAR(64),
+role VARCHAR(32),
 CONSTRAINT PRIMARY KEY (trip_id, username),
 CONSTRAINT FOREIGN KEY (trip_id) REFERENCES Trip (trip_id),
 CONSTRAINT FOREIGN KEY (username) REFERENCES User (username));

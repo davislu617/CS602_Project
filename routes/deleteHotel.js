@@ -11,7 +11,7 @@ module.exports =
                                   error:'<div class="alert alert-danger" role="alert">'+err+'</div>'});
                 return;
             }
-            // delete the hotel the database
+            // delete the hotel from the database
             var query = 'DELETE FROM Trip_Hotel '
                         + 'WHERE trip_id = ? AND travelDate = ?';
             connection.query(query,[trip_id, travelDate], function(err, rows){

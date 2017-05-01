@@ -25,6 +25,5 @@ module.exports =
                 }
             });
             connection.release();
-            console.log('close');
         });
     }
